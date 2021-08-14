@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">  
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Launch countdown timer</title>
+
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="stars">
+      <img src="/images/bg-stars.svg" alt="">
+    </div>
+
+    <h1>WE ' RE LAUNCHING SOON </h1>
+    
+    <div class="countdown">
+      <div>
+        <P id = "days">{time}</P>
+        <h3>DAYS</h3>
+
+      </div>
+
+      <div>
+        <P id = "hours">{time}</P>
+        <h3>HOURS</h3>
+        
+      </div>
+
+      <div>
+        <P id = "minutes">{time}</P>
+        <h3>MINUTES</h3>
+        
+      </div>
+
+      <div>
+        <P id = "seconds">{time}</P>
+        <h3>SECONDS</h3>
+        
+      </div>
+    </div>
+
+</div>
+
+<footer>
+
+    <div class="socials">
+        <ul>
+            <li><img src="/images/icon-facebook.svg" alt=""></li>
+            <li><img src="/images/icon-instagram.svg" alt=""></li>
+            <li><img src="/images/icon-pinterest.svg" alt=""></li>
+        </ul>
+    </div>
+    
+    <div class="hills">
+        <img src="/images/pattern-hills.svg" alt="">
+    </div>
+</footer>
+
+    <script>
+
+    const countdown = () => {
+      const endDate = new Date("September 20, 2021 00:00:00").getTime();
+      const now = new Date().getTime();
+      const dif = endDate - now;
+
+      // now defining them into seconds, date etc
+
+      const seconds = 1000;
+      const minutes = seconds * 60;
+      const hours = minutes * 60;
+      const days = hours * 24;
+
+      let timeDays = Math.floor(dif / days);
+      let timeHours = Math.floor((dif % days) / hours);
+      let timeMinutes = Math.floor((dif % hours) / minutes);
+      let timeSeconds = Math.floor((dif % minutes) / seconds);
+      
+      // making them appear in 2 digits if less than 10
+      timeDays = timeDays < 10 ? "0" + timeDays : timeDays;
+      timeHours = timeHours < 10 ? "0" + timeHours : timeHours;
+      timeMinutes = timeMinutes < 10 ? "0" + timeMinutes : timeMinutes;
+      timeSeconds = timeSeconds < 10 ? "0" + timeSeconds : timeSeconds;
+
+      document.getElementById("days").innerHTML = timeDays;
+      document.getElementById("hours").innerHTML = timeHours;
+      document.getElementById("minutes").innerHTML = timeMinutes;
+      document.getElementById("seconds").innerHTML = timeSeconds;
+    }
+
+    // making it cocunting every second 
+
+    setInterval(countdown, 1000);
+
+  </script>
+  
+</body>
+</html>
